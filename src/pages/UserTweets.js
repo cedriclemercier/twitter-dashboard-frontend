@@ -1,13 +1,13 @@
+import { useEffect, useState, useCallback, useContext } from 'react';
 import axios from 'axios';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 
 // @mui
-import Iconify from '../components/iconify';
-import { AuthContext } from 'src/components/context/auth-context';
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography, CircularProgress, Stack, Button } from '@mui/material';
-import { useEffect, useState, useCallback, useContext } from 'react';
+import Iconify from '../components/iconify';
+import AuthContext from '../components/context';
 import { TweetCard } from '../sections/@dashboard/app';
 // components
 
@@ -29,7 +29,7 @@ export default function UserTweets() {
         oauth_token: auth.token,
         oauth_token_secret: auth.secret,
         ids: tweets.length > 0 ? [tweets[0].author_id] : [],
-        username: username
+        username
       })
     } catch (err) {
       console.log(err);
@@ -120,7 +120,7 @@ export default function UserTweets() {
               <CircularProgress />
             </Grid>
           )}
-          {!isLoading && tweets.length == 0 && 'User has no tweets yet. Or try to refresh?'}
+          {!isLoading && tweets.length === 0 && 'User has no tweets yet. Or try to refresh?'}
           {!isLoading &&
             tweets.length > 0 &&
             tweets.map((tweet, index) => <TweetCard key={tweet._id} index={index} content={tweet} />)}

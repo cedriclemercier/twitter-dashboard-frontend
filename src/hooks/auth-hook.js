@@ -14,8 +14,8 @@ export const useAuth = () => {
       'userData',
       JSON.stringify({
         userId: uid,
-        token: token,
-        secret: secret
+        token,
+        secret
       })
     );
   }, []);
@@ -35,7 +35,7 @@ export const useAuth = () => {
     const storedData = JSON.parse(localStorage.getItem('userData'));
     if (
       storedData &&
-      storedData.token && 
+      storedData.token &&
       storedData.secret &&
       storedData.userId !== "false"
     ) {

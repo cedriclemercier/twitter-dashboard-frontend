@@ -80,7 +80,7 @@ TweetCard.propTypes = {
 const interactHandler = async (action, tweetid, userId, token, secret) => {
   console.log(`You ${action} ${tweetid}`);
   const data = {
-    userId: userId,
+    userId,
     oauth_token: token,
     oauth_token_secret: secret
   }
@@ -111,7 +111,10 @@ const interactHandler = async (action, tweetid, userId, token, secret) => {
 export default function TweetCard({ index, content, loadTweets }) {
   // const [isLiked, setIsLiked] = useState(false);
 
-  const { username, profile_image_url, name } = content;
+  const username = content.username;
+  const profileImageUrl = content.profile_image_url;
+  const name = content.name;
+  
   const latestPostLarge = index === null;
   const latestPost = index === null || index === null;
   const twitterLink = 'https://twitter.com/';
@@ -162,12 +165,15 @@ export default function TweetCard({ index, content, loadTweets }) {
           interacted = true;
         }
         break;
+      default:
+        return false
     }
 
     if (interacted) {
-      if (element == 'color') return TWEET_INFO.filter((el) => el.action == action)[0].interactColor;
-      return TWEET_INFO.map((el) => el.action == action)[0].interactBgColor;
+      if (element === 'color') return TWEET_INFO.filter((el) => el.action === action)[0].interactColor;
+      return TWEET_INFO.map((el) => el.action === action)[0].interactBgColor;
     }
+    return false
   };
 
   // useEffect(() => {
@@ -217,7 +223,7 @@ export default function TweetCard({ index, content, loadTweets }) {
             />
             <StyledAvatar
               alt={username}
-              src={profile_image_url}
+              src={profileImageUrl}
               sx={{
                 ...((latestPostLarge || latestPost) && {
                   zIndex: 9,
@@ -239,7 +245,7 @@ export default function TweetCard({ index, content, loadTweets }) {
               component="a"
               variant="subtitle3"
               underline="hover"
-              href={twitterLink + username + '/status/' + content.id}
+              href={`${twitterLink}${username}/status/${content.id}`}
               target="_blank"
               rel="noopener"
             >
@@ -277,9 +283,9 @@ export default function TweetCard({ index, content, loadTweets }) {
                 action={info.action}
                 interactHandler={interactHandler}
                 tweetid={content.id}
-                likeStatus={content.likes.includes('63c3e834042957cf3154f9c7') ? true : false}
-                rtStatus={content.retweets.includes('63c3e834042957cf3154f9c7') ? true : false}
-                replyStatus={content.replies.includes('63c3e834042957cf3154f9c7') ? true : false}
+                likeStatus={content.likes.includes('63c3e834042957cf3154f9c7')}
+                rtStatus={content.retweets.includes('63c3e834042957cf3154f9c7')}
+                replyStatus={content.replies.includes('63c3e834042957cf3154f9c7')}
               />
             ))}
           </StyledInfo>

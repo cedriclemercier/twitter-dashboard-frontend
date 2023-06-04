@@ -15,6 +15,13 @@
     "react-hooks",
     "prettier"
   ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
   "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaVersion": 8,

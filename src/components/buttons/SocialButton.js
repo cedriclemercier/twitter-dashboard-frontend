@@ -8,9 +8,9 @@ import { Typography, Button, CircularProgress } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../utils/formatNumber';
 //
-import Iconify from '../../components/iconify';
+import Iconify from '../iconify';
 
-import { AuthContext } from '../context/auth-context';
+import AuthContext from '../context';
 
 const SocialButton = styled(Button)(({ theme }) => ({
   color: '#c9d1dc',
@@ -34,15 +34,15 @@ export default function SocialButtonComponent({
   const [isReplied, setIsReplied] = useState(replyStatus);
 
   const getColors = () => {
-    if (action == 'like' && isLiked) {
+    if (action === 'like' && isLiked) {
       return ['#F91880', '#FEE7F2'];
     }
 
-    if (action == 'rt' && isRetweeted) {
+    if (action === 'rt' && isRetweeted) {
       return ['#00BA7C', '#E5F8F2'];
     }
 
-    if (action == 'reply' && isReplied) {
+    if (action === 'reply' && isReplied) {
       return ['#00BA7C', '#E5F8F2'];
     }
 
@@ -55,7 +55,7 @@ export default function SocialButtonComponent({
 
     setIsLoading(false);
 
-    if (result.status == 200) {
+    if (result.status === 200) {
       if (isLiked) setIsLiked(false);
       if (!isLiked) setIsLiked(true);
 

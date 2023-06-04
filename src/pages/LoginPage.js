@@ -1,8 +1,12 @@
+import { useContext } from 'react';
+
 import { Helmet } from 'react-helmet-async';
 import { redirect } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
 import { Link, Container, Typography, Divider, Stack, Button } from '@mui/material';
+// Context
+import AuthContext from '../components/context/AuthContext';
 // hooks
 import useResponsive from '../hooks/useResponsive';
 // components
@@ -11,8 +15,6 @@ import Iconify from '../components/iconify';
 // sections
 import { LoginForm } from '../sections/auth/login';
 
-import { useContext } from 'react';
-import { AuthContext } from 'src/components/context/auth-context';
 // ----------------------------------------------------------------------
 
 const StyledRoot = styled('div')(({ theme }) => ({
@@ -47,7 +49,7 @@ export default function LoginPage() {
   const auth = useContext(AuthContext);
   const mdUp = useResponsive('up', 'md');
 
-  const query = new URLSearchParams(location.search);
+  const query = new URLSearchParams(window.location.search);
 
   // TEMP STUFF FOR LOCAL
   const token = query.get('token');

@@ -89,7 +89,12 @@ TwitterPostCard.propTypes = {
 };
 
 export default function TwitterPostCard({ content, index, followHandler, isFollowing }) {
-  const { username, name, profile_image_url, profile_banner_url, description, verified, created_at, public_metrics } = content;
+  const { username, name, description, verified } = content;
+  const profileImageUrl = content.profile_image_url;
+  const profileBannerUrl = content.profile_banner_url;
+  const createdAt = content.created_at;
+  const publicMetrics = content.public_metrics;
+  
   const twitterLink = 'https://twitter.com/';
   // const POST_INFO = [
   //   { number: comment, icon: 'eva:message-circle-fill' },
@@ -120,10 +125,10 @@ export default function TwitterPostCard({ content, index, followHandler, isFollo
           />
           <StyledAvatar
             alt={name}
-            src={profile_image_url}
+            src={profileImageUrl}
           />
 
-          <StyledCover alt={name} src={profile_banner_url} />
+          <StyledCover alt={name} src={profileBannerUrl} />
         </StyledCardMedia>
 
         <CardContent sx={{ pt: 4 }}>
@@ -143,12 +148,12 @@ export default function TwitterPostCard({ content, index, followHandler, isFollo
             >
               @{username}
             </StyledSubtitle>
-            <StyledSubtitle2 component="p" variant="subtitle3" sx={{ mt: 1, mb: 2 }}> <Iconify icon="eva:calendar-outline" sx={{ width: 16, height: 16, mr: 0.5 }} /> Joined {moment(created_at).format('ll')}</StyledSubtitle2>
+            <StyledSubtitle2 component="p" variant="subtitle3" sx={{ mt: 1, mb: 2 }}> <Iconify icon="eva:calendar-outline" sx={{ width: 16, height: 16, mr: 0.5 }} /> Joined {moment(createdAt).format('ll')}</StyledSubtitle2>
           </StyledTitleArea>
 
           <Typography sx={{ fontSize: 14 }} variant="subtitle3">
 
-            <strong>{public_metrics.followers_count}</strong> Followers | <strong>{public_metrics.following_count}</strong> Follows
+            <strong>{publicMetrics.followers_count}</strong> Followers | <strong>{publicMetrics.following_count}</strong> Follows
           </Typography>
 
           <Typography sx={{ mt: 3 }}>{description}</Typography>

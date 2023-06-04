@@ -1,20 +1,21 @@
+import { useEffect, useState, useCallback, useContext } from 'react';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet } from 'react-helmet-async';
 
 // @mui
-import Iconify from '../components/iconify';
 import { useTheme } from '@mui/material/styles';
+// Context
 import { Grid, Container, Typography, CircularProgress, Stack, Button } from '@mui/material';
-import { useEffect, useState, useCallback, useContext } from 'react';
-import { useNavigate, useOutletContext } from 'react-router-dom';
+import AuthContext from '../components/context';
+import Iconify from '../components/iconify';
 import { TwitterPostCard } from '../sections/@dashboard/app';
-import { AuthContext } from 'src/components/context/auth-context';
 // components
 
 // ----------------------------------------------------------------------
 
 export default function SearchResults({ result, isLoading, setSearchResults }) {
-    const query = new URLSearchParams(location.search);
+    const query = new URLSearchParams(window.location.search);
     const navigate = useNavigate();
     const auth = useContext(AuthContext);
 
@@ -34,9 +35,9 @@ export default function SearchResults({ result, isLoading, setSearchResults }) {
         setIsFollowing(false)
 
         console.log(res)
-        if (res.data.statusCode == 200) {
+        if (res.data.statusCode === 200) {
             setSearchResults(null)
-            navigate('/dashboard/app/' + result.user.username)
+            navigate(`/dashboard/app/${result.user.username}`)
         }
     };
 
@@ -56,8 +57,7 @@ export default function SearchResults({ result, isLoading, setSearchResults }) {
                     alignItems="right"
                     spacing={2}
                     sx={{ mb: 2 }}
-                >
-                </Stack>
+                />
                 <Grid container spacing={3}>
                     {isLoading && <CircularProgress />}
                     {!isLoading && result.user  &&

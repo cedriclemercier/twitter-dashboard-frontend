@@ -2,7 +2,8 @@ import { useState, useEffect, useCallback, useContext } from 'react';
 // @mui
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
-import { AuthContext } from 'src/components/context/auth-context';
+
+import AuthContext from '../../../components/context';
 
 // ----------------------------------------------------------------------
 

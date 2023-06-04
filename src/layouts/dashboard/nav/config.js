@@ -1,8 +1,8 @@
 // component
-import SvgColor from '../../../components/svg-color';
 import { styled } from '@mui/material/styles';
 import { Avatar } from '@mui/material';
-import UserTweets from 'src/pages/UserTweets';
+import UserTweets from '../../../pages/UserTweets';
+import SvgColor from '../../../components/svg-color';
 // ----------------------------------------------------------------------
 
 const icon = (name) => <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />;
@@ -26,17 +26,17 @@ const removeEmojis = (text) => {
 
 const getNavConfig = (followedAccounts) => {
   let config
-  if (!followedAccounts || followedAccounts.length != 0) {
+  if (!followedAccounts || followedAccounts.length !== 0) {
     config = {
       title: '',
       path: '/',
-      icon: <StyledAvatar></StyledAvatar>
+      icon: <StyledAvatar />
     }
   }
   config = followedAccounts.map((el) => ({
     title: removeEmojis(el.name),
-    path: '/dashboard/app/' + el.username,
-    icon: <StyledAvatar alt={el.username} src={el.profile_image_url}></StyledAvatar>,
+    path: `/dashboard/app/${el.username}`,
+    icon: <StyledAvatar alt={el.username} src={el.profile_image_url}/>,
   }));
 
   return config;

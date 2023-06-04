@@ -4,10 +4,10 @@ import axios from 'axios';
 // @mui
 import { styled } from '@mui/material/styles';
 //
+import AuthContext from '../../components/context';
+import SearchResults from '../../pages/SearchResults';
 import Header from './header';
 import Nav from './nav';
-import { AuthContext } from 'src/components/context/auth-context';
-import SearchResults from 'src/pages/SearchResults';
 
 // ----------------------------------------------------------------------
 

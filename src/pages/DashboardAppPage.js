@@ -7,10 +7,10 @@ import { Grid, Container, Typography, CircularProgress, Button, Stack } from '@m
 import { useEffect, useState, useCallback, useContext } from 'react';
 
 // components
+import { responsiveFontSizes } from '../theme/typography';
 import Iconify from '../components/iconify';
 import { TweetCard } from '../sections/@dashboard/app';
-import { responsiveFontSizes } from 'src/theme/typography';
-import { AuthContext } from 'src/components/context/auth-context';
+import AuthContext from '../components/context';
 
 // sections
 

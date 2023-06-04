@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { useEffect, useState, useContext, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useState, useContext, useCallback } from 'react';
 // @mui
 import { styled, alpha } from '@mui/material/styles';
-import { Box, Link, Button, Drawer, Typography, Avatar, Stack } from '@mui/material';
+import { Box, Drawer, Stack } from '@mui/material';
+// Context
+import AuthContext from '../../../components/context';
 // hooks
 import useResponsive from '../../../hooks/useResponsive';
 // components
 import Logo from '../../../components/logo';
 import Scrollbar from '../../../components/scrollbar';
 import NavSection from '../../../components/nav-section';
-import { AuthContext } from 'src/components/context/auth-context';
 //
 import navConfig from './config';
 
@@ -50,7 +50,7 @@ export default function Nav({ openNav, onCloseNav, setSearchResults }) {
     } catch (err) {
       console.log(err)
     }
-    setFollowedAccounts(accounts['followed_ids']);
+    setFollowedAccounts(accounts.followed_ids);
   }, [])
 
   // let followedAccounts;
@@ -79,7 +79,7 @@ export default function Nav({ openNav, onCloseNav, setSearchResults }) {
       <Box sx={{ flexGrow: 1 }} />
 
       <Box sx={{ px: 2.5, pb: 3, mt: 10 }}>
-        <Stack alignItems="center" spacing={3} sx={{ pt: 5, borderRadius: 2, position: 'relative' }}></Stack>
+        <Stack alignItems="center" spacing={3} sx={{ pt: 5, borderRadius: 2, position: 'relative' }} />
       </Box>
     </Scrollbar>
   );

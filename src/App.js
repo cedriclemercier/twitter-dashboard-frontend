@@ -1,13 +1,13 @@
+import React, { useState, useCallback, useEffect } from 'react';
+import { CircularProgress } from '@mui/material';
 // routes
 import Router from './routes';
-import React, { useState, useCallback, useEffect } from 'react';
 // theme
 import ThemeProvider from './theme';
 // components
 import ScrollToTop from './components/scroll-to-top';
 import { StyledChart } from './components/chart';
-import { AuthContext } from './components/context/auth-context';
-import { CircularProgress } from '@mui/material';
+import AuthContext from './components/context';
 
 import { useAuth } from './hooks/auth-hook';
 
@@ -24,11 +24,11 @@ export default function App() {
     <AuthContext.Provider
       value={{
         isLoggedIn: !!token,
-        token: token,
-        userId: userId,
-        login: login,
-        logout: logout,
-        secret: secret,
+        token,
+        userId,
+        login,
+        logout,
+        secret,
       }}
     >
       <ThemeProvider>

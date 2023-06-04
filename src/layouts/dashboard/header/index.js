@@ -4,16 +4,16 @@ import axios from 'axios';
 // @mui
 import { styled } from '@mui/material/styles';
 import { Box, Stack, AppBar, Toolbar, IconButton, Button } from '@mui/material';
+// Context
+import AuthContext from '../../../components/context';
+import {TwitterLogin} from '../../../components/buttons';
 // utils
 import { bgBlur } from '../../../utils/cssStyles';
 // components
 import Iconify from '../../../components/iconify';
-import { AuthContext } from 'src/components/context/auth-context';
 //
 import Searchbar from './Searchbar';
 import AccountPopover from './AccountPopover';
-import NotificationsPopover from './NotificationsPopover';
-import TwitterLogin from 'src/components/buttons/TwitterLogin';
 
 // ----------------------------------------------------------------------
 
@@ -85,7 +85,7 @@ export default function Header({ onOpenNav, search }) {
         > 
           {!auth.token ? (
             <div>
-              <a href={process.env.REACT_APP_API + '/api/auth/twitter'}>Login to twitter</a>
+              <a href={`${process.env.REACT_APP_API}/api/auth/twitter`}>Login to twitter</a>
             {/* <TwitterLogin login={loginHandler} /> */}
             </div>
           ) : (
