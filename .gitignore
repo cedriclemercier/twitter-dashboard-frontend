@@ -26,5 +26,3 @@ yarn-error.log*
 .eslintcache
 
 src/_mock
-
-.eslintrc
