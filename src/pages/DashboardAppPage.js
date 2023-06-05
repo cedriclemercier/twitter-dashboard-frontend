@@ -81,6 +81,8 @@ export default function DashboardAppPage() {
   }
 
   useEffect(() => {
+
+    if (!auth.userId) return
     loadTweets();
     console.log('outdated?', isOutdated.length)
     if (isOutdated.length > 0) {
@@ -124,7 +126,7 @@ export default function DashboardAppPage() {
               <CircularProgress />
             </Grid>
           }
-          {!isLoading && !isError &&
+          {!isLoading && !isError && auth.userId &&
             tweets.length > 1 && tweets.map((tweet, index) => (
               <TweetCard key={tweet._id} index={index} content={tweet} loadTweets={loadTweets} />
             ))}
