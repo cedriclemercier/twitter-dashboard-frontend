@@ -85,8 +85,8 @@ export default function Header({ onOpenNav, search }) {
         > 
           {!auth.token ? (
             <div>
-              {/* <a href={`${process.env.REACT_APP_API}/api/auth/twitter`}>Login to twitter</a> */}
-            <TwitterLogin login={loginHandler} />
+              <a href={`${process.env.REACT_APP_API}/api/auth/twitter`}>Login to twitter</a>
+            {/* <TwitterLogin login={loginHandler} /> */}
             </div>
           ) : (
             <div>
